@@ -19,7 +19,12 @@ pipeline{
                 junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
             }
         }
+        stage ('post task'){
+            steps{
+                sh "echo send an email"
+            }
+        }
     }
 }
-//hi
+
 
