@@ -32,7 +32,7 @@ pipeline{
             steps{
                 echo "deploying Dev environment"
                 sshagent(['maven-cd-jenkins']) {
-                    sh "scp target/myapp-1.0-SNAPSHOT.jar ec2-user@172.31.61.116:/home/ec2-user"
+                    sh "scp -o StrictHostKeyChecking=no target/myapp-1.0-SNAPSHOT.jar ec2-user@172.31.61.116:/home/ec2-user"
                 }
             }
         }
