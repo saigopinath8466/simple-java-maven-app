@@ -2,6 +2,14 @@ pipeline{
     agent {
         label 'agent1'
     }
+    tools {
+        maven 'maven362'
+    }
+    
+    options {
+       buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '2')
+    }
+
     stages{
         stage('checkout'){
             steps{
