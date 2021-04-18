@@ -34,6 +34,17 @@ pipeline{
                 sh "echo send an email"
             }
         }
+        post {
+            always {
+                deleteDir()
+            }
+            failure {
+                echo "sendmail -s Maven Job Failed recipients@mycompany.com"
+            }
+            success {
+                echo "the job is successful"
+            }
+        }
     }
 }
 
