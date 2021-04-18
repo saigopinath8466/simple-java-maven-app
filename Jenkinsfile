@@ -28,9 +28,12 @@ pipeline{
                 junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
             }
         }
-        stage ('post task'){
+        stage ('deploy'){
             steps{
-                sh "echo send an email"
+                echo "deploying Dev environment"
+                sshagent(['maven-cd-jenkins']) {
+                    sh "scp target/myapp-1.0-SNAPSHOT.jar ec2-user@172.31.61.116:/home/ec2-user"
+                }
             }
         }
     }
