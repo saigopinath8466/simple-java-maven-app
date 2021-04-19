@@ -42,9 +42,9 @@ pipeline{
                 
                     steps{
                         echo "deploying Dev environment"
-                        sshagent(['maven-cd-jenkins']) {
-                            sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
-                        }
+                        //sshagent(['maven-cd-jenkins']) {
+                            //sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
+                       // }
                     }
                 }
                 stage('target2') {
@@ -55,9 +55,9 @@ pipeline{
                 
                     steps{
                         echo "deploying Dev environment"
-                        sshagent(['maven-cd-jenkins']) {
-                            sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
-                        }
+                       // sshagent(['maven-cd-jenkins']) {
+                          //  sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
+                        //}
                     }
                 }
                 stage ('Deploy to UAT') {
@@ -89,7 +89,7 @@ pipeline{
          }
         
     }
-}
+}//hi
 
 
 /*stage ('deploy'){
