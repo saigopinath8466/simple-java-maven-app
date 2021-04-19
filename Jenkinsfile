@@ -5,6 +5,10 @@ pipeline{
     tools {
         maven 'maven362'
     }
+    environmnt {
+        target_user = "ec2-user"
+        target_server = "172.31.61.116"
+    }
 
     options {
         timeout(10)
@@ -28,13 +32,37 @@ pipeline{
                 junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
             }
         }
-        stage ('deploy'){
-            steps{
-                echo "deploying Dev environment"
-                sshagent(['maven-cd-jenkins']) {
-                    sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar ec2-user@172.31.61.116:/home/ec2-user"
+        stage ('deploy to dev') {
+            parallel {
+                stage('target1') {
+                    environment {
+                        target_user = "ec2-user"
+                        target_server = "172.31.61.116"
+                    }
+                
+                    steps{
+                        echo "deploying Dev environment"
+                        sshagent(['maven-cd-jenkins']) {
+                            sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
+                        }
+                    }
                 }
+                stage('target2') {
+                    environment {
+                        target_user = "ec2-user"
+                        target_server = "172.31.24.134"
+                    }
+                
+                    steps{
+                        echo "deploying Dev environment"
+                        sshagent(['maven-cd-jenkins']) {
+                            sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
+                        }
+                    }
+                }
+                
             }
+           
         }
     }
     post {
@@ -52,4 +80,13 @@ pipeline{
 }
 
 
+/*stage ('deploy'){
+            steps{
+                echo "deploying Dev environment"
+                sshagent(['maven-cd-jenkins']) {
+                    sh "scp -o StrictHostKeyChecking=no target/my-app-1.0-SNAPSHOT.jar $target_user@$target_server:/home/ec2-user"
+                }
+            }
+        }
+*/
 
