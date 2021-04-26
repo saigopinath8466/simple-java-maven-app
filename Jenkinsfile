@@ -51,7 +51,7 @@ pipeline{
                     environment {
                         target_user = "ec2-user"
                         target_server = "172.31.24.134"
-                    }
+                     }
                 
                     steps{
                         echo "deploying Dev environment"
