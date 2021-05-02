@@ -1,0 +1,22 @@
+pipeline {
+    agent {
+        docker{
+            image 'maven:alpine-test'
+            label 'dockernode'
+        }
+    }
+
+    stages{
+        stage('checkout') {
+            steps{
+                checkout scm
+            }
+        }
+
+        stage('build') {
+            steps {
+                sh "mvn clean install"
+            }
+        }
+    }
+}
