@@ -1,14 +1,14 @@
 pipeline {
     agent {
-        docker{
+        docker {
             image 'maven:alpine-test'
             label 'dockernode'
         }
     }
 
-    stages{
+    stages {
         stage('checkout') {
-            steps{
+            steps {
                 checkout scm
             }
         }
