@@ -1,6 +1,6 @@
 pipeline{
     agent {
-        label 'agent1'
+        label 'dockernode'
     }
     tools {
         maven 'maven362'
@@ -75,7 +75,7 @@ pipeline{
                 
            // }
            
-       // }
+        }
     }
     post {
         always {
