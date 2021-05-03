@@ -32,7 +32,9 @@ pipeline{
                 junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
             }
         }
-       // stage ('deploy to dev') {
+    }
+}
+       /* stage ('deploy to dev') {
             //parallel {
               //  stage('target1') {
                  //   environment {
@@ -76,8 +78,8 @@ pipeline{
            // }
            
        // }
-   // }
-    post {
+   // }/*
+   /* post {
         always {
            deleteDir()
          }
@@ -88,7 +90,7 @@ pipeline{
              echo "the job is successful"
          }
         
-    }
+    }*/
 
 
 
