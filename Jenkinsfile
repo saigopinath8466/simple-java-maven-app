@@ -47,7 +47,7 @@ pipeline{
                    //     }
                     }
              //   }
-            / /   stage('target2') {
+            //   stage('target2') {
               //      environment {
                    //     target_user = "ec2-user"
                  //       target_server = "172.31.24.134"
