@@ -76,7 +76,7 @@ pipeline{
            // }
            
        // }
-    }//
+   // }
     post {
         always {
            deleteDir()
@@ -90,6 +90,7 @@ pipeline{
         
     }
 
+}
 
 
 /*stage ('deploy'){
